@@ -4,15 +4,20 @@ using namespace std;
 int main()  
 {
     int k = 0;
-    START: do {
+    do {
         cout << "Enter k: ";
         cin >> k;
-    } while (k <= 0)
+    } while (k <= 0);
     int cnt = k, cu, j;     //c помощью cnt будем отслеживать нужную цифру
     for (int i = 1; ; i++) {    //можно поставить условием i <= k, но случаев i > k не существует, т.е. программа все равно никогда не выйдет из цикла
         if (i * i * i > 2147483647){
             cout << "k is too large";
-            goto START;
+            do {
+                cout << "Enter k: ";
+                cin >> k;
+            } while (k <= 0);   
+            i = 0;  
+            continue;   //запускаем цикл заново 
         }
         else cu = i * i * i;
         for (j = 1; cu / j > 10; j *= 10);  //узнаем разрядность куба k
